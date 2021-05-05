@@ -23,10 +23,26 @@ limited microcontrollers.
 	* n: 32 bit unsigned long
 	* x: 16 bit hexadecimal
 
+**printf_t usage:**
+```
+unsigned char hexValue = 0xFF;
+printf_t("Hex Value = 0x%x\n", hexValue);
+```
+
+**sprintf_t usage:**
+```
+unsigned char hexValue = 0xFF;
+char str[20];
+sprintf_t(str, "Hex Value = 0x%x\n", hexValue);
+```
+
+**Limitations:**
   Also notice that the ability to add leading zeros, for example, is not supported. The following will not
   produce the expected results:
 
-`printf("Value: 0x02%x\n);`
+```
+printf_t("Value: 0x02%x\n");
+```
 
 ### Acknowledgments and Modifications ###
 
