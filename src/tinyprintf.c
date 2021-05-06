@@ -24,17 +24,10 @@
 #include "tinyprintf.h"
 #include <stdarg.h>
 
-static char ** spfPtr; /**< Detailed description after the member */
+//Vars
+static char ** spfPtr; /**< Pointer to output char pointer used in sprintf_t */
 static unsigned char spfPtrIndex = 0;
-static unsigned char stdOutDest = UARTOUT; /**< Detailed description after the member */
-static void putcMEGA2560(char); /**< Detailed description after the member */
-static void putc(unsigned);
-static void puts(char *);
-static void xtoa(unsigned long, const unsigned long*);
-static void puth(unsigned);
-static void formatCommon(char *, va_list); /**< Detailed description after the member */
-static void stdoutSwitch(unsigned int c, unsigned char stdoutSelect); /**< Detailed description after the member */
-
+static unsigned char stdOutDest = UARTOUT; /**< Default destination of putc is UART TX Buffer. */
 static const unsigned long dv[] = {
 //  4294967296      // 32 bit unsigned max
    1000000000,     // +0
@@ -49,6 +42,15 @@ static const unsigned long dv[] = {
            10,     // +8
             1,     // +9
 };
+
+//Protos
+static void putcMEGA2560(char);
+static void putc(unsigned);
+static void puts(char *);
+static void xtoa(unsigned long, const unsigned long*);
+static void puth(unsigned);
+static void formatCommon(char *, va_list);
+static void stdoutSwitch(unsigned int c, unsigned char stdoutSelect);
 
 /**
  * @brief Print formatted string to UART TX.
